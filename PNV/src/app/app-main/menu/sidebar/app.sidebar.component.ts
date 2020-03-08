@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {AppMainComponent} from '../../app.main.component';
 
 @Component({
@@ -10,6 +10,12 @@ export class AppSideBarComponent {
     constructor(public app: AppMainComponent) {
         
     }
+    
+    OnInit(){
+        
+
+    }
+    
     date12: any;
 
 }

@@ -40,7 +40,7 @@ export const routes: Routes = [
 	...TarefaRoutes,*/
     { path: '', component: AppMainComponent,
         children: [
-            { path: '', component: HomeComponent, },
+            { path: '', component: HomeComponent, canActivate: [AuthGuard] },
             { path: 'dash', component: DashboardDemoComponent, canActivate: [AuthGuard] },
             { path: 'sample', component: SampleDemoComponent, canActivate: [AuthGuard] },
             { path: 'forms', component: FormsDemoComponent, canActivate: [AuthGuard] },

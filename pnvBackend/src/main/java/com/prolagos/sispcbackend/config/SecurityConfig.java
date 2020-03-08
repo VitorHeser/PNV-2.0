@@ -38,6 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// Permissão para alteração
 	private static final String[] PUBLIC_MATCHERS = {
 			"/usuarios/**",// permitindo só metodo post autorizado abaixo
+			"/turmas/**",// permitindo só metodo post autorizado abaixo
+			"/modulos/**",// permitindo só metodo post autorizado abaixo
+			"/tarefas/**",// permitindo só metodo post autorizado abaixo
+			"/aulas/**",// permitindo só metodo post autorizado abaixo
+			"/provas/**",// permitindo só metodo post autorizado abaixo
+			"/provas/**",// permitindo só metodo post autorizado abaixo
 			
 	};
 	

@@ -3,7 +3,6 @@ package com.prolagos.sispcbackend.domain;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
@@ -40,31 +38,31 @@ public class Cad_PNV_Usuarios implements UserDetails {
 	@Getter @Setter private Integer usuarioId;
 	@Getter @Setter private String nome;
 	@Getter @Setter private String email;
+	@Getter @Setter private String tipo;
 	@Getter @Setter private String login;
 	@JsonIgnore
 	@Getter @Setter private String senha;
 	@Getter @Setter private Boolean ativo;
-	@Getter @Setter private String tipo;
 	@Getter @Setter private String foto;
 	
-	
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "cad_relc_usuariosperfis",
-		joinColumns = @JoinColumn(name = "fk_usuarioId", foreignKey = @ForeignKey(name="fk_usuario_perfis")),
-		inverseJoinColumns = @JoinColumn(name = "fk_perfilId", foreignKey = @ForeignKey(name="fk_perfil_usuarios")))
+	@JoinTable(name = "cad_relc_usuariosTurmas",
+		joinColumns = @JoinColumn(name = "fk_usuarioId", foreignKey = @ForeignKey(name="fk_usuario_turma")),
+		inverseJoinColumns = @JoinColumn(name = "fk_turmaId", foreignKey = @ForeignKey(name="fk_turma_usuarios")))
 	@Fetch(FetchMode.SUBSELECT) 
-	@Getter @Setter private List<Cad_PNV_Perfis> perfis;
+	@Getter @Setter private List<Cad_PNV_Turmas> turmas;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="usuarioId")
 	@Getter @Setter private List<Cad_Auth_Usuarios> usuarios= new ArrayList<>();
 
-
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return this.perfis;
+		return this.turmas;
 	}
 
+	
 	@Override
 	public String getPassword() {
 		return this.senha;

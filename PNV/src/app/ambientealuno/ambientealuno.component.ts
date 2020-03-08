@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AmbientealunoService } from './ambientealuno.service';
+import { AuthService } from '../login/auth.service';
 
 @Component({
   selector: 'app-ambientealuno',
@@ -7,34 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AmbientealunoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private amb:AmbientealunoService, private auth: AuthService) { }
 
   ModulosDisponiveis: any[]=[];
-  ListaDeModulos: boolean = true
+  TurmasDisponiveis: any[]=[];
 
   ngOnInit() {
-    this.ModulosDisponiveis=
-    [
-      {
-        id: 1, modulo: "Módulo 01",  atividadespendentes:0,  aulaspendentes:0,  provaspendentes:0
-      },
-      {
-        id: 2, modulo: "Módulo 02",  atividadespendentes:1,  aulaspendentes:1,  provaspendentes:1
-      },
-      {
-        id: 3, modulo: "Módulo 03",  atividadespendentes:2,  aulaspendentes:2,  provaspendentes:2
-      },
-      {
-        id: 4, modulo: "Módulo 04",  atividadespendentes:2,  aulaspendentes:2,  provaspendentes:2
-      },
-      {
-        id: 5, modulo: "Módulo 05",  atividadespendentes:2,  aulaspendentes:2,  provaspendentes:2
-      },
-      {
-        id: 6, modulo: "Módulo 06",  atividadespendentes:2,  aulaspendentes:2,  provaspendentes:2
-      }
-    ]
+    this.TurmasDisponiveis = this.auth.turmas
   }
+  
+  ListaDeTurmas: boolean = true
+  ListaDeModulos: boolean = false
+  TurmaSelecionada: any
+  acessarTurma(turmaselecionado){
+    this.ListaDeTurmas=false
+    this.ListaDeModulos=true
+    this.TurmaSelecionada = turmaselecionado
+    this.ModulosDisponiveis = turmaselecionado.modulos
+  }
+
+
+
 
   Modulo: boolean = false
   ModuloSelecionado: any
@@ -42,6 +37,14 @@ export class AmbientealunoComponent implements OnInit {
     this.ListaDeModulos=false
     this.Modulo=true
     this.ModuloSelecionado = moduloselecionado
+  }
+
+  voltar(){
+    this.ListaDeTurmas=true
+    this.ListaDeModulos=false
+    this.Modulo=false
+    this.ModuloSelecionado = null
+
   }
   
 }

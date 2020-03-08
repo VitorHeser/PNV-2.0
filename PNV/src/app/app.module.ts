@@ -129,12 +129,14 @@ import { CriacaodeusuarioComponent } from './admin/criacaodeusuario/criacaodeusu
 import { ListadeusuariosComponent } from './admin/listadeusuarios/listadeusuarios.component';
 import { AdminService } from './admin/Admin.service';
 import { AmbientealunoComponent } from './ambientealuno/ambientealuno.component';
+import { AmbientealunoService } from './ambientealuno/ambientealuno.service';
 import { ModuloComponent } from './ambientealuno/modulo/modulo.component';
 import { AtividadesComponent } from './ambientealuno/modulo/atividades/atividades.component';
 import { DocumentosComponent } from './ambientealuno/modulo/documentos/documentos.component';
 import { ProvasComponent } from './ambientealuno/modulo/provas/provas.component';
 import { AulasComponent } from './ambientealuno/modulo/aulas/aulas.component';
 import { FormularioComponent } from './ambientealuno/modulo/atividades/formulario/formulario.component';
+
 
 
 @NgModule({
@@ -269,7 +271,9 @@ import { FormularioComponent } from './ambientealuno/modulo/atividades/formulari
         CarService, CountryService, EventService, NodeService, MessageService, TarefaService, 
         AuthService,
         AuthGuard,
-        AdminService
+        AdminService,
+        AmbientealunoService
+
     ],
     bootstrap: [AppComponent]
 })

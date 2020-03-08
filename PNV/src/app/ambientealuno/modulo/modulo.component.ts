@@ -37,7 +37,9 @@ export class ModuloComponent implements OnInit {
   visualizarProvas:boolean =false
   visualizarDocumentos:boolean =false
 
+  moduloSelecionado:any
   acessar(opcao){
+    this.moduloSelecionado = opcao
     this.visualizarAmbienteModulo = false
     if(opcao['id']===1){
       this.visualizarAulas = true

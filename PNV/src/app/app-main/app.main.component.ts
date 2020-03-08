@@ -39,12 +39,20 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
 
     rippleMouseDownListener: any;
 
+    usuAluno: boolean;
+    usuTutor: boolean;
+    permissoes: any[] = []
     constructor(
         public renderer: Renderer2,
         public zone: NgZone,
         private authService: AuthService,
         private router: Router,
-        ) {}
+        ) {
+
+        
+    }
+
+        
 
     ngOnInit() {
         this.zone.runOutsideAngular(() => {this.bindRipple(); });
@@ -52,6 +60,7 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
             mostrar =>{ 
               this.mostrarMenu = mostrar;
             })
+            
     }
 
     activeMenu(event) {

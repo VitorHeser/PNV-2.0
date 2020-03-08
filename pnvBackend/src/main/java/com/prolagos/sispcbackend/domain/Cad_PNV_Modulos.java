@@ -5,10 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,9 +34,16 @@ public class Cad_PNV_Modulos implements Serializable{
 	@Getter @Setter private String modulo;
 	@Getter @Setter private String nivel;
 	
+
 	@JsonIgnore
-	@OneToMany(mappedBy="moduloId")
-	@Getter @Setter private List<Cad_Auth_Usuarios> authorizathions = new ArrayList<>();
+	@Fetch(FetchMode.SUBSELECT) 
+	@ManyToMany(mappedBy="modulos", fetch = FetchType.EAGER)
+	@Getter @Setter private List<Cad_PNV_Turmas> turmas;
+	
+
+	@JsonIgnore
+	@OneToMany(mappedBy="modulo")
+	@Getter @Setter private List<Cad_PNV_Atividades> atividades= new ArrayList<>();
 	
 	public Cad_PNV_Modulos(Integer moduloId, String modulo, String nivel) {
 		super();

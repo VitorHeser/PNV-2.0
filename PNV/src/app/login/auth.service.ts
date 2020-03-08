@@ -20,11 +20,13 @@ export class AuthService {
 
   mostrarMenuEmitter = new EventEmitter<boolean>();
   dados: any = [];
-
+  turmas: any[]
   constructor(
     private router: Router,
     private http:HttpClient
-    ) { }
+    ) { 
+      this.turmas = []
+    }
 
   private extractData(res: Response) {
     let body = res;
@@ -138,13 +140,15 @@ export class AuthService {
   
   
   this.dados.push({ key: 'usuarioId' , valor: tokenDecode.jti, lista: [] });
-  
-  //console.log('Id: '+ tokenDecode.jti)
-  
-  sessionStorage.setItem('id',tokenDecode.jti)
   sessionStorage.setItem('email',tokenDecode.sub.substring(1,(tokenDecode.sub.length - 1)))
-  //console.log(sessionStorage.getItem('email'))
-  
+
+  this.consultaUsuario(tokenDecode.sub.substring(1,(tokenDecode.sub.length - 1))).subscribe(
+    response=>{
+      sessionStorage.setItem('user',response.tipo);
+      sessionStorage.setItem('id',response.usuarioId)
+      this.turmas = response['authorities']
+    }
+  );
   
   this.dados.push({ key: 'email' , valor: tokenDecode.sub, lista: [] });
   sessionStorage.setItem('nome', capitalizar(this.dados[1].valor.toString().substring(1, this.dados[1].valor.indexOf('.')))+' '+capitalizar(this.dados[1].valor.toString().substring(this.dados[1].valor.indexOf('.')+1, this.dados[1].valor.indexOf('@'))))
@@ -165,8 +169,8 @@ export class AuthService {
   
   tokenDecode.roles.forEach((element,index) => {
     this.auth.push(element['authority']);
-    sessionStorage.setItem("permissao "+ index ,element['authority'])
-    console.log(element)
+    sessionStorage.setItem("turma "+ index ,element['turmaId'])
+    // console.log(element)
   });
 
   return this.dados
@@ -180,7 +184,12 @@ export class AuthService {
   }
 
   
-
+  consultaUsuario(id: string): Observable<any>{
+    console.log(id)
+    return this.http.get(`${API_CONFIG}/usuarios/email/${id}`)
+                    .pipe(map(this.extractData),
+                    catchError(ErrorHandler.handleError))
+  }
 }
 
 

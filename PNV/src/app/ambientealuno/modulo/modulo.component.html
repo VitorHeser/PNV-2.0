@@ -29,7 +29,7 @@
   </div>
 </div>
 <div>
-  <app-atividades *ngIf="visualizarAtividades"></app-atividades>
+  <app-atividades *ngIf="visualizarAtividades" [modulo]="moduloSelecionado"></app-atividades>
   <app-aulas *ngIf="visualizarAulas"></app-aulas>
   <app-documentos *ngIf="visualizarDocumentos"></app-documentos>
   <app-provas *ngIf="visualizarProvas"></app-provas>

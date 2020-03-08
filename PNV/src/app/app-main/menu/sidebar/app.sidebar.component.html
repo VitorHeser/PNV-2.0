@@ -34,22 +34,33 @@
                         </div>
                         <app-sidebarTabContent>
 
-                            <div class="projects-tab">
-                                    <ul>
-                                        <li class="clearfix">
-                                            <a routerLink='/#' (click)="app.onTopbarSubItemClick($event)">
-                                                <i class="material-icons">dashboard</i>
-                                                <span class="project-title" style="color:#F5F5F5 !important;">Dashboard</span>
-                                            </a>
-                                        </li>
-                                        <li class="clearfix">
-                                            <a routerLink='/ambientealuno' (click)="app.onTopbarSubItemClick($event)">
-                                                <i class="material-icons">face</i>
-                                                <span class="project-title" style="color:#F5F5F5 !important;">Area do Aluno</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <div class="projects-tab"  >
+                                <ul >
+                                    <li class="clearfix" >
+                                        <a  (click)="app.onTopbarSubItemClick($event)" routerLink="/dash">
+                                            <i class="material-icons">dashboard</i>
+                                            <span class="project-title" style="color:#F5F5F5 !important;">Dashboards</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li class="clearfix" >
+                                        <a  (click)="app.onTopbarSubItemClick($event)" routerLink="/ambientealuno">
+                                            <i class="material-icons">face</i>
+                                            <span class="project-title" style="color:#F5F5F5 !important;">Ambiente Aluno</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li class="clearfix" >
+                                        <a  (click)="app.onTopbarSubItemClick($event)" routerLink="/#">
+                                            <i class="material-icons">face</i>
+                                            <span class="project-title" style="color:#F5F5F5 !important;">Ambiente Aluno</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                      
+                            </div>
 
                         </app-sidebarTabContent>
                     </div>

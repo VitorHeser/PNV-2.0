@@ -1,6 +1,31 @@
 
-<div  *ngIf="ListaDeModulos">
+<div  *ngIf="ListaDeTurmas">
     <div><font size="5" style="font-weight:bold;">Ambiente do Aluno</font></div>
+    <div class="ui-g" style="margin-top: 15px;">
+
+        <div class="ui-g-12 ui-md-3" *ngFor="let i of TurmasDisponiveis">
+            <div class="card" style=" padding-top: 3px;  margin-left: 8px; margin-right: 8px; height: 120px;">
+                <div style="padding-left: 5px; padding-top: 5px;  padding-right: 5px;height: 100%;">
+                    <font size="3" style="font-weight:bold">{{ i.descricao }}</font>
+                    <div style="padding-top: 15px"> 
+                        <div style="padding-top: 9px">Ano: {{ i.ano }}</div>
+                    </div>
+                    <div style="padding-top: 15px; text-align: right;"> 
+                        <button pButton type="button" label="Acessar Módulo" (click)="acessarTurma(i)" class="ui-button-rounded"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div  *ngIf="ListaDeModulos">
+    <div class="ui-g" >
+        <div class="ui-g-6"><font size="6" style="font-weight:bold;">Ambiente do Aluno</font></div>
+        <div class="ui-g-6" style="text-align:right">
+            <button pButton type="button" label="Voltar" (click)="voltar()" class="ui-button-rounded"></button>
+        </div>
+    </div>
     <div class="ui-g" style="margin-top: 15px;">
 
         <div class="ui-g-12 ui-md-3" *ngFor="let i of ModulosDisponiveis">

@@ -104,6 +104,6 @@ public class UsuariosService {
 	private void updateData(Cad_PNV_Usuarios newObj, Cad_PNV_Usuarios obj) {
 		newObj.setNome(obj.getNome());
 		newObj.setEmail(obj.getEmail());
-		newObj.setPerfis(obj.getPerfis());
+		newObj.setTurmas(obj.getTurmas());
 	}
 }
