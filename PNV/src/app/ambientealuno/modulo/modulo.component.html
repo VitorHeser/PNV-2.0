@@ -1,0 +1,36 @@
+<div *ngIf="visualizarAmbienteModulo">
+  <div class="ui-g" >
+    <div class="ui-g-6"  style="text-align:left">
+      <font size="5" style="font-weight:bold;">{{ modulo.modulo }}</font>
+    </div>
+    <div class="ui-g-6" style="text-align:right">
+      <button pButton type="button" label="Voltar" (click)="voltar()" class="ui-button-rounded"></button>
+    </div>
+  </div>
+
+  <div class="ui-g" style="margin-top: 15px;">
+
+    <div class="ui-g-12 ui-md-3" *ngFor="let i of opcoes">
+      <div class="card" style=" padding-top: 3px;  margin-left: 8px; margin-right: 8px; height: 190px;">
+        <div style="padding-left: 5px; padding-top: 5px;  padding-right: 5px;height: 100%;text-align: center;">
+          <div class="p-col-12">
+              <img width="100px" src="assets\layout\images\ModuloAluno/{{i.label}}.png" />
+          </div>
+          <div class="p-col-12 car-data">
+            <div class="car-title">{{i.label}}</div>
+
+            <div class="car-buttons">
+              <button pButton type="button" class="ui-button-secondary" (click)="acessar(i)" icon="pi pi-search"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <app-atividades *ngIf="visualizarAtividades"></app-atividades>
+  <app-aulas *ngIf="visualizarAulas"></app-aulas>
+  <app-documentos *ngIf="visualizarDocumentos"></app-documentos>
+  <app-provas *ngIf="visualizarProvas"></app-provas>
+</div>

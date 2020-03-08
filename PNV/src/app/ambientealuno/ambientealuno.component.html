@@ -1,0 +1,23 @@
+
+<div  *ngIf="ListaDeModulos">
+    <div><font size="5" style="font-weight:bold;">Ambiente do Aluno</font></div>
+    <div class="ui-g" style="margin-top: 15px;">
+
+        <div class="ui-g-12 ui-md-3" *ngFor="let i of ModulosDisponiveis">
+            <div class="card" style=" padding-top: 3px;  margin-left: 8px; margin-right: 8px; height: 190px;">
+                <div style="padding-left: 5px; padding-top: 5px;  padding-right: 5px;height: 100%;">
+                    <font size="3" style="font-weight:bold">{{ i.modulo }}</font>
+                    <div style="padding-top: 15px"> 
+                        <div style="padding-top: 9px">Aulas Pendentes: {{ i.aulaspendentes }}</div>
+                        <div style="padding-top: 9px">Atividades Pendentes: {{ i.atividadespendentes }}</div>
+                        <div style="padding-top: 9px">Provas Pendentes: {{ i.provaspendentes }}</div>
+                    </div>
+                    <div style="padding-top: 15px; text-align: right;"> 
+                        <button pButton type="button" label="Acessar Módulo" (click)="acessarModulo(i)" class="ui-button-rounded"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modulo *ngIf="Modulo" [modulo]="ModuloSelecionado"></app-modulo>

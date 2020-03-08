@@ -1,0 +1,30 @@
+<div class="ui-g">
+  <div class="ui-g-6"  style="text-align:left">
+    <font size="5" style="font-weight:bold;">Atividades - {{ modulo.modulo }}</font>
+  </div>
+  <div class="ui-g-6" style="text-align:right">
+    <button pButton type="button" label="Voltar" (click)="voltar()" class="ui-button-rounded"></button>
+  </div>
+</div>
+<div style="margin-top: 15px;">
+  <div class="ui-g" *ngFor="let i of atividades">
+    <div class="card card-title ui-g-12" style=" padding-top: 3px;  margin-left: 8px; margin-right: 8px; text-align: center;">
+      <div class="ui-g-12 ui-md-12" style="text-align: left; font-weight:bold; font-size: 20px;">Atividade: {{i.id}} - {{i.atividade}}</div>
+      <div class="ui-g-12 ui-md-4" style="text-align: left; font-size: 14px;">Vencimento: {{i.vencimento}}</div>
+      <div class="ui-g-12 ui-md-4" style="text-align: left; font-size: 14px;">Status:
+        <button pButton type="button" *ngIf="i.status===0" label="Não Realizada" class="ui-button-rounded ui-button-info"></button>
+        <button pButton type="button" *ngIf="i.status===1" label="Realizada" class="ui-button-rounded ui-button-success"></button>
+      </div>
+      <div class="ui-g-12 ui-md-3" style="text-align: left; font-size: 14px;">Nota: <p-progressBar [showValue]="true" [value]="i.avaliacao"></p-progressBar></div>
+      <div class="ui-g-12 ui-md-1" style="text-align: center; font-size: 14px;">
+        <button pButton type="button" (click)="iniciarAtividade(i)">
+          <i class="pi pi-check" ></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<p-dialog [(visible)]="atividadeselecionada" (onHide)="aoFechar()">
+  <app-formulario [atividade]="AtividadeSelect" ></app-formulario>
+
+</p-dialog>

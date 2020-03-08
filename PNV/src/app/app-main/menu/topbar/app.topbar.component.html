@@ -1,0 +1,59 @@
+<div class="topbar clearfix" Style = "background: whitesmoke !important;">
+    <!--<div class="logo">
+        <a href="#">
+            <img src="assets/layout/images/sisp.png">
+        </a>
+    </div>-->
+
+    <img src="assets/layout/images/PNV.png" class="app-name"/>
+
+    <a id="topbar-menu-button" href="#" (click)="app.onTopbarMenuButtonClick($event)">
+        <i class="material-icons">menu</i>
+    </a>
+
+    <ul class="topbar-menu fadeInDown" [ngClass]="{'topbar-menu-visible': app.topbarMenuActive}">
+        <li #profile class="profile-item" [ngClass]="{'active-topmenuitem':app.activeTopbarItem === profile}" style="width:180px">
+            <a href="#" (click)="app.onTopbarItemClick($event,profile)">
+                <div class="profile-image">
+                    <img src= {{imgPerfil}}>
+                </div>
+                <div class="profile-info">
+                    <span class="topbar-item-name profile-name" style="width:180px">{{nome}}</span>
+                    <span class="topbar-item-name profile-role" style="width:180px">{{portal}}</span>
+                </div>
+            </a>
+
+            <ul class="fadeInDown">
+                <li role="menuitem">
+                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                        <i class="material-icons">person</i>
+                        <span>Perfil</span>
+                        <span class="topbar-submenuitem-badge"></span>
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                        <i class="material-icons">security</i>
+                        <span>Privacidade</span>
+                        <span class="topbar-submenuitem-badge"></span>
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a href="#" (click)="app.onTopbarSubItemClick($event)">
+                        <i class="material-icons">settings_applications</i>
+                        <span>Configurações</span>
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a href="" (click)="fechar()">
+                        <i class="material-icons">power_settings_new</i>
+                        <span>Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+        
+    </ul>
+</div>
