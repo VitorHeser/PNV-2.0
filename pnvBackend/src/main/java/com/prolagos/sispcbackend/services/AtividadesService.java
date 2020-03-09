@@ -11,39 +11,43 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.prolagos.sispcbackend.domain.Cad_PNV_Perfis;
-import com.prolagos.sispcbackend.repositories.PerfisRepository;
+import com.prolagos.sispcbackend.domain.Cad_PNV_Atividades;
+import com.prolagos.sispcbackend.repositories.AtividadesRepository;
 import com.prolagos.sispcbackend.services.exceptions.DataIntegrityException;
 
 @Service
-public class PerfisService {
+public class AtividadesService {
 	
 	@Autowired
-	private PerfisRepository repo;
+	private AtividadesRepository repo;
 
-	public List<Cad_PNV_Perfis> findAll() {
+	public List<Cad_PNV_Atividades> findAll() {
 		return repo.findAll();
 	}
 
-	public Page<Cad_PNV_Perfis> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+	public Page<Cad_PNV_Atividades> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
 	
-	public Cad_PNV_Perfis find(Integer id) {
-		Optional<Cad_PNV_Perfis> obj = repo.findById(id);
+	public Cad_PNV_Atividades find(Integer id) {
+		Optional<Cad_PNV_Atividades> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + 
-		Cad_PNV_Perfis.class.getName(), null));
+		Cad_PNV_Atividades.class.getName(), null));
+	}
+
+	public List<Cad_PNV_Atividades> findByModulo(Integer id) {
+		return  repo.findByModulo(id);
 	}
 	
-	public Cad_PNV_Perfis insert(Cad_PNV_Perfis obj) {
-		obj.setPerfilId(null);  //Utilizado em Entidade Com auto incremento
+	public Cad_PNV_Atividades insert(Cad_PNV_Atividades obj) {
+		obj.setAtividadeId(null);  //Utilizado em Entidade Com auto incremento
 		obj = repo.save(obj);
 		return obj;
 	}
 	
-	public Cad_PNV_Perfis update(Cad_PNV_Perfis obj) {
-		find(obj.getPerfilId());
+	public Cad_PNV_Atividades update(Cad_PNV_Atividades obj) {
+		find(obj.getAtividadeId());
 		return repo.save(obj);
 	}
 	

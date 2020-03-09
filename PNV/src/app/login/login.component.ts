@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
         if(error.status === 0){
           this.messageService.add({severity:'error', summary: "Login não efetuado!", detail: "Servidor Inoperante!" , life: 5000});
         }else{
-        this.messageService.add({severity:'error', summary: "Login não efetuado!", detail: error.error.message , life: 5000});
+        this.messageService.add({severity:'error', summary: "Login não efetuado!", detail:" error.error.message ", life: 5000});
         }
         console.log(error)
       }

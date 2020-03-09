@@ -41,8 +41,9 @@ public class Cad_PNV_Modulos implements Serializable{
 	@Getter @Setter private List<Cad_PNV_Turmas> turmas;
 	
 
+
 	@JsonIgnore
-	@OneToMany(mappedBy="modulo")
+	@OneToMany(mappedBy="modulos")
 	@Getter @Setter private List<Cad_PNV_Atividades> atividades= new ArrayList<>();
 	
 	public Cad_PNV_Modulos(Integer moduloId, String modulo, String nivel) {

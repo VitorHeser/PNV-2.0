@@ -14,34 +14,39 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.prolagos.sispcbackend.domain.Cad_PNV_Perfis;
-import com.prolagos.sispcbackend.services.PerfisService;
+import com.prolagos.sispcbackend.domain.Cad_PNV_Atividades;
+import com.prolagos.sispcbackend.services.AtividadesService;
 
 @RestController
-@RequestMapping(value="/perfis")
-public class PerfisResource {
+@RequestMapping(value="/atividades")
+public class AtividadesResource {
 	
 	@Autowired
-	private PerfisService service;
+	private AtividadesService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Cad_PNV_Perfis> find(@PathVariable Integer id) {
-		Cad_PNV_Perfis obj = service.find(id);
+	public ResponseEntity<Cad_PNV_Atividades> find(@PathVariable Integer id) {
+		Cad_PNV_Atividades obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
+	@RequestMapping(value="/modulo/{id}", method=RequestMethod.GET)
+	public ResponseEntity<List<Cad_PNV_Atividades>> findByModulo(@PathVariable Integer id) {
+		List<Cad_PNV_Atividades> obj = service.findByModulo(id);
+		return ResponseEntity.ok().body(obj);
+	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-		public ResponseEntity<Void> insert(@RequestBody Cad_PNV_Perfis obj) {
+		public ResponseEntity<Void> insert(@RequestBody Cad_PNV_Atividades obj) {
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-			.path("/{id}").buildAndExpand(obj.getPerfilId()).toUri();
+			.path("/{id}").buildAndExpand(obj.getAtividadeId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Cad_PNV_Perfis obj, @PathVariable Integer id) {
-		obj.setPerfilId(id);
+	public ResponseEntity<Void> update(@RequestBody Cad_PNV_Atividades obj, @PathVariable Integer id) {
+		obj.setAtividadeId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
@@ -53,20 +58,19 @@ public class PerfisResource {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<Cad_PNV_Perfis>> findAll() {
-		List<Cad_PNV_Perfis> list = service.findAll();
+	public ResponseEntity<List<Cad_PNV_Atividades>> findAll() {
+		List<Cad_PNV_Atividades> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@RequestMapping(value="/page", method=RequestMethod.GET)
-	public ResponseEntity<Page<Cad_PNV_Perfis>> findPage(
+	public ResponseEntity<Page<Cad_PNV_Atividades>> findPage(
 			@RequestParam(value="page", defaultValue="0") Integer page, 
 			@RequestParam(value="linesPerPage", defaultValue="24") Integer linesPerPage, 
-			@RequestParam(value="orderBy", defaultValue="perfilId") String orderBy, 
+			@RequestParam(value="orderBy", defaultValue="moduloId") String orderBy, 
 			@RequestParam(value="direction", defaultValue="ASC") String direction) {
-		Page<Cad_PNV_Perfis> list = service.findPage(page, linesPerPage, orderBy, direction);
+		Page<Cad_PNV_Atividades> list = service.findPage(page, linesPerPage, orderBy, direction);
 		return ResponseEntity.ok().body(list);
 	}
 
-	
 }
