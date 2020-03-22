@@ -17,6 +17,7 @@ export class ModuloComponent implements OnInit {
   visualizarAmbienteModulo=true
 
   ngOnInit() {
+    console.log(this.modulo)
     this.opcoes = 
     [
       {id:1, label: "Aulas"},
@@ -40,7 +41,7 @@ export class ModuloComponent implements OnInit {
   moduloSelecionado:any
   acessar(opcao){
     this.moduloSelecionado = opcao
-    this.visualizarAmbienteModulo = false
+    // this.visualizarAmbienteModulo = false
     if(opcao['id']===1){
       this.visualizarAulas = true
     }else if(opcao['id']===2){

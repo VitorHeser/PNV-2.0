@@ -11,7 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.prolagos.sispcbackend.domain.Cad_PNV_Modulos;
+import com.prolagos.sispcbackend.domain.PNV_Modulos;
 import com.prolagos.sispcbackend.repositories.ModulosRepository;
 import com.prolagos.sispcbackend.services.exceptions.DataIntegrityException;
 
@@ -21,29 +21,29 @@ public class ModulosService {
 	@Autowired
 	private ModulosRepository repo;
 
-	public List<Cad_PNV_Modulos> findAll() {
+	public List<PNV_Modulos> findAll() {
 		return repo.findAll();
 	}
 
-	public Page<Cad_PNV_Modulos> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+	public Page<PNV_Modulos> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
 	
-	public Cad_PNV_Modulos find(Integer id) {
-		Optional<Cad_PNV_Modulos> obj = repo.findById(id);
+	public PNV_Modulos find(Integer id) {
+		Optional<PNV_Modulos> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + 
-		Cad_PNV_Modulos.class.getName(), null));
+		PNV_Modulos.class.getName(), null));
 	}
 	
-	public Cad_PNV_Modulos insert(Cad_PNV_Modulos obj) {
-		obj.setModuloId(null);  //Utilizado em Entidade Com auto incremento
+	public PNV_Modulos insert(PNV_Modulos obj) {
+		obj.setId(null);  //Utilizado em Entidade Com auto incremento
 		obj = repo.save(obj);
 		return obj;
 	}
 	
-	public Cad_PNV_Modulos update(Cad_PNV_Modulos obj) {
-		find(obj.getModuloId());
+	public PNV_Modulos update(PNV_Modulos obj) {
+		find(obj.getId());
 		return repo.save(obj);
 	}
 	

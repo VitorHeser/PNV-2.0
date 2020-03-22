@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -20,22 +19,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor
-public class TurmasDTO implements Serializable {
+public class TurmasChamadaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Getter @Setter private Integer turmaId;
 	@Getter @Setter private String Descricao;
 	@Getter @Setter private Integer Ano;
 	
-	@OneToMany(mappedBy="turmas")
-	@Getter @Setter private List<PNV_Modulos> modulos;
+	@Fetch(FetchMode.SUBSELECT) 
+	@ManyToMany(mappedBy="turmas", fetch = FetchType.EAGER)
+	@Getter @Setter private List<PNV_Cad_Usuarios> usuarios;
 	
-	public TurmasDTO(PNV_Cad_Turmas obj) {
+	
+	public TurmasChamadaDTO(PNV_Cad_Turmas obj) {
 		
 		turmaId = obj.getTurmaId();
 		Descricao = obj.getDescricao();
 		Ano = obj.getAno();
-		modulos = obj.getModulos();
+		usuarios = obj.getUsuarios();
 		
 	}
 }

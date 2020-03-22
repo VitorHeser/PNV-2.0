@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.validation.constraints.Email;
 
-import com.prolagos.sispcbackend.domain.Cad_PNV_Usuarios;
+import com.prolagos.sispcbackend.domain.PNV_Cad_Usuarios;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +30,7 @@ public class UsuarioDTO implements Serializable {
 	
 	
 
-	public UsuarioDTO(Cad_PNV_Usuarios obj) {
+	public UsuarioDTO(PNV_Cad_Usuarios obj) {
 		
 		usuarioId = obj.getUsuarioId();
 		nome = obj.getNome();

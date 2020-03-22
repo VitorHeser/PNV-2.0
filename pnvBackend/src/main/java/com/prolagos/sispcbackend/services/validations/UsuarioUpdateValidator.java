@@ -11,7 +11,7 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerMapping;
 
-import com.prolagos.sispcbackend.domain.Cad_PNV_Usuarios;
+import com.prolagos.sispcbackend.domain.PNV_Cad_Usuarios;
 import com.prolagos.sispcbackend.dto.UsuarioDTO;
 import com.prolagos.sispcbackend.repositories.UsuarioRepository;
 import com.prolagos.sispcbackend.resources.exceptions.FieldMessage;
@@ -37,7 +37,7 @@ public class UsuarioUpdateValidator implements ConstraintValidator<UsuarioUpdate
 		
 		List<FieldMessage> list = new ArrayList<>();
 		
-		Cad_PNV_Usuarios aux = repo.findByEmail(objDto.getEmail());
+		PNV_Cad_Usuarios aux = repo.findByEmail(objDto.getEmail());
 		if (aux != null && !aux.getUsuarioId().equals(uriId)) {
 			list.add(new FieldMessage("email", "Email já existente"));
 		}

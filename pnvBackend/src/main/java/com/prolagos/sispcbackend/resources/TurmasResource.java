@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.prolagos.sispcbackend.domain.Cad_PNV_Turmas;
-import com.prolagos.sispcbackend.domain.Cad_PNV_Turmas;
+import com.prolagos.sispcbackend.domain.PNV_Cad_Turmas;
+import com.prolagos.sispcbackend.domain.PNV_Cad_Turmas;
+import com.prolagos.sispcbackend.dto.TurmasChamadaDTO;
 import com.prolagos.sispcbackend.dto.TurmasDTO;
 import com.prolagos.sispcbackend.dto.UsuarioDTO;
 import com.prolagos.sispcbackend.dto.UsuarioNewDTO;
@@ -32,20 +33,25 @@ public class TurmasResource {
 	@Autowired
 	private TurmasService service;
 
+	@RequestMapping(value="/chamada/{id}", method=RequestMethod.GET)
+	public ResponseEntity<TurmasChamadaDTO> findChamada(@PathVariable Integer id) {
+		PNV_Cad_Turmas obj = service.find(id);
+		TurmasChamadaDTO dto = new TurmasChamadaDTO(obj);
+		return ResponseEntity.ok().body(dto);
+	}
+	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<TurmasDTO> find(@PathVariable Integer id) {
-		Cad_PNV_Turmas obj = service.find(id);
+		PNV_Cad_Turmas obj = service.find(id);
 		TurmasDTO dto = new TurmasDTO(obj);
 		return ResponseEntity.ok().body(dto);
 	}
 
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<List<Cad_PNV_Turmas>> findAll() {
-		List<Cad_PNV_Turmas> list = service.findAll();
+	public ResponseEntity<List<PNV_Cad_Turmas>> findAll() {
+		List<PNV_Cad_Turmas> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
-	
-	
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {

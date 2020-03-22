@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
-import com.prolagos.sispcbackend.domain.Cad_PNV_Usuarios;
+import com.prolagos.sispcbackend.domain.PNV_Cad_Usuarios;
 import com.prolagos.sispcbackend.dto.UsuarioDTO;
 import com.prolagos.sispcbackend.dto.UsuarioNewDTO;
 import com.prolagos.sispcbackend.services.UsuariosService;
@@ -32,20 +32,20 @@ public class UsuariosResource {
 	private UsuariosService service;
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<Cad_PNV_Usuarios> find(@PathVariable Integer id) {
-		Cad_PNV_Usuarios obj = service.find(id);
+	public ResponseEntity<PNV_Cad_Usuarios> find(@PathVariable Integer id) {
+		PNV_Cad_Usuarios obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@RequestMapping(value = { "email/{email}" }, method = { RequestMethod.GET })
-    public ResponseEntity<Cad_PNV_Usuarios> find(@PathVariable final String email) {
-        final Cad_PNV_Usuarios obj = this.service.findByEmail(email);
+    public ResponseEntity<PNV_Cad_Usuarios> find(@PathVariable final String email) {
+        final PNV_Cad_Usuarios obj = this.service.findByEmail(email);
         return (ResponseEntity.ok().body(obj));
     }
 
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody UsuarioNewDTO objDto) {
-		Cad_PNV_Usuarios obj = service.fromDTO(objDto);
+		PNV_Cad_Usuarios obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getUsuarioId()).toUri();
@@ -54,14 +54,14 @@ public class UsuariosResource {
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody UsuarioDTO objDto, @PathVariable Integer id) {
-		Cad_PNV_Usuarios obj = service.fromDTO(objDto);
+		PNV_Cad_Usuarios obj = service.fromDTO(objDto);
 		obj.setUsuarioId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
 	}
 	
     @RequestMapping(value = { "/user/{id}" }, method = { RequestMethod.PUT })
-    public ResponseEntity<Void> update(@RequestBody Cad_PNV_Usuarios obj, @PathVariable final Integer id) {
+    public ResponseEntity<Void> update(@RequestBody PNV_Cad_Usuarios obj, @PathVariable final Integer id) {
         obj.setUsuarioId(id);
         obj = this.service.update(obj);
         return ResponseEntity.noContent().build();
@@ -76,7 +76,7 @@ public class UsuariosResource {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<List<UsuarioDTO>> findAll() {
-		List<Cad_PNV_Usuarios> list = service.findAll();
+		List<PNV_Cad_Usuarios> list = service.findAll();
 		List<UsuarioDTO> listDto = list.stream().map(obj -> new UsuarioDTO(obj)).collect(Collectors.toList());  
 		return ResponseEntity.ok().body(listDto);
 	}
@@ -88,14 +88,14 @@ public class UsuariosResource {
 			@RequestParam(value="linesPerPage", defaultValue="100000") Integer linesPerPage, 
 			@RequestParam(value="orderBy", defaultValue="nome") String orderBy, 
 			@RequestParam(value="direction", defaultValue="ASC") String direction) {
-		Page<Cad_PNV_Usuarios> list = service.findPage(page, linesPerPage, orderBy, direction);
+		Page<PNV_Cad_Usuarios> list = service.findPage(page, linesPerPage, orderBy, direction);
 		Page<UsuarioDTO> listDto = list.map(obj -> new UsuarioDTO(obj));  
 		return ResponseEntity.ok().body(listDto);
 	}
 	
 	@RequestMapping(value="/attsenha/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> updateSenha(@Valid @RequestBody UsuarioDTO objDto, @PathVariable Integer id) {
-		Cad_PNV_Usuarios obj = service.updateFromDTO(objDto);
+		PNV_Cad_Usuarios obj = service.updateFromDTO(objDto);
 		obj.setUsuarioId(id);
 		obj = service.updateSenha(obj);
 		return ResponseEntity.noContent().build();
@@ -105,7 +105,7 @@ public class UsuariosResource {
 	@RequestMapping(value="/recupereSenhaUser/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> recuperarSenha(@Valid @RequestBody UsuarioDTO objDto, @PathVariable Integer id) {
 		objDto.setSenha("123");
-		Cad_PNV_Usuarios obj = service.updateFromDTO(objDto);
+		PNV_Cad_Usuarios obj = service.updateFromDTO(objDto);
 		obj.setUsuarioId(id);
 		obj = service.updateSenha(obj);
 		return ResponseEntity.noContent().build();

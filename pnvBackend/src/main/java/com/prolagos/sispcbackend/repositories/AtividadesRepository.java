@@ -8,12 +8,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.prolagos.sispcbackend.domain.Cad_PNV_Atividades;
+import com.prolagos.sispcbackend.domain.PNV_Modulos_Atividades;
 
 @Repository
-public interface AtividadesRepository extends JpaRepository<Cad_PNV_Atividades, Integer>{
+public interface AtividadesRepository extends JpaRepository<PNV_Modulos_Atividades, Integer>{
 	
-	@Transactional(readOnly = true)
-    @Query("SELECT obj FROM Cad_PNV_Atividades obj WHERE obj.modulos = :modulo")
-	List<Cad_PNV_Atividades> findByModulo(@Param("modulo") final Integer modulo);
+//	@Transactional(readOnly = true)
+//    @Query("SELECT obj FROM PNV_Modulos_Atividades obj WHERE obj.modulos = :modulo")
+//	List<PNV_Modulos_Atividades> findByModulo(@Param("modulo") final Integer modulo);
 }

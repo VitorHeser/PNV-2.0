@@ -11,7 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
-import com.prolagos.sispcbackend.domain.Cad_PNV_Atividades;
+import com.prolagos.sispcbackend.domain.PNV_Modulos_Atividades;
 import com.prolagos.sispcbackend.repositories.AtividadesRepository;
 import com.prolagos.sispcbackend.services.exceptions.DataIntegrityException;
 
@@ -21,33 +21,33 @@ public class AtividadesService {
 	@Autowired
 	private AtividadesRepository repo;
 
-	public List<Cad_PNV_Atividades> findAll() {
+	public List<PNV_Modulos_Atividades> findAll() {
 		return repo.findAll();
 	}
 
-	public Page<Cad_PNV_Atividades> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+	public Page<PNV_Modulos_Atividades> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
 	
-	public Cad_PNV_Atividades find(Integer id) {
-		Optional<Cad_PNV_Atividades> obj = repo.findById(id);
+	public PNV_Modulos_Atividades find(Integer id) {
+		Optional<PNV_Modulos_Atividades> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + 
-		Cad_PNV_Atividades.class.getName(), null));
+		PNV_Modulos_Atividades.class.getName(), null));
 	}
 
-	public List<Cad_PNV_Atividades> findByModulo(Integer id) {
-		return  repo.findByModulo(id);
-	}
+//	public List<PNV_Modulos_Atividades> findByModulo(Integer id) {
+//		return  repo.findByModulo(id);
+//	}
 	
-	public Cad_PNV_Atividades insert(Cad_PNV_Atividades obj) {
-		obj.setAtividadeId(null);  //Utilizado em Entidade Com auto incremento
+	public PNV_Modulos_Atividades insert(PNV_Modulos_Atividades obj) {
+		obj.setId(null);  //Utilizado em Entidade Com auto incremento
 		obj = repo.save(obj);
 		return obj;
 	}
 	
-	public Cad_PNV_Atividades update(Cad_PNV_Atividades obj) {
-		find(obj.getAtividadeId());
+	public PNV_Modulos_Atividades update(PNV_Modulos_Atividades obj) {
+		find(obj.getId());
 		return repo.save(obj);
 	}
 	

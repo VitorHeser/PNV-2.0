@@ -50,13 +50,13 @@ export const routes: Routes = [
             { path: 'menus', component: MenusDemoComponent, canActivate: [AuthGuard] },
             { path: 'messages', component: MessagesDemoComponent, canActivate: [AuthGuard] },
             { path: 'misc', component: MiscDemoComponent, canActivate: [AuthGuard] },
-            { path: 'empty', component: EmptyDemoComponent, canActivate: [AuthGuard] },
+            { path: 'empty', component: EmptyDemoComponent, canActivate: [AuthGuard] }, 
             { path: 'charts', component: ChartsDemoComponent, canActivate: [AuthGuard] },
             { path: 'file', component: FileDemoComponent, canActivate: [AuthGuard] },
             { path: 'utils', component: UtilsDemoComponent, canActivate: [AuthGuard] },
             { path: 'documentation', component: DocumentationComponent, canActivate: [AuthGuard] },
             { path: 'cadastrar', component: CadastrarComponent, canActivate: [AuthGuard] },
-            { path: 'ambientealuno', component: AmbientealunoComponent},
+            { path: 'ambientealuno', component: AmbientealunoComponent, canActivate: [AuthGuard] },
             { path: 'admin', component: AdminComponent, canActivate: [AuthGuard]}
         ]
     },

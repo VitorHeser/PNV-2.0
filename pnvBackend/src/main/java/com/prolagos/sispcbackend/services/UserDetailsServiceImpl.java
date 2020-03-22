@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.prolagos.sispcbackend.domain.Cad_PNV_Usuarios;
+import com.prolagos.sispcbackend.domain.PNV_Cad_Usuarios;
 import com.prolagos.sispcbackend.repositories.UsuarioRepository;
 
 @Service
@@ -17,7 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException { 
-		Cad_PNV_Usuarios uso = repo.findByEmail(email);
+		PNV_Cad_Usuarios uso = repo.findByEmail(email);
 		if (uso == null) {
 			throw new UsernameNotFoundException("usuario não foi encontrado");
 		}
