@@ -1,4 +1,4 @@
-# PNV-2.0 - Angular App
+# PNV - Angular App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.1.
 
