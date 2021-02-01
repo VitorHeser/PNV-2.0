@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Clonando o Repositório
 
-`git clone https://github.com/julianosilvasimas/Sispc.git`
+`git clone https://github.com/VitorHeser/PNV-2.0`
 
 ### Instalando as Dependências
 
